@@ -96,7 +96,7 @@ float recursive_bisection(float leftbound, float rightbound, float min_error){
     }
     
     else{
-        printf("This polynomional doesn't contain any roots");
+        printf("This polynomional doesn't contain any roots in the given interval");
     }
     
     return 0;

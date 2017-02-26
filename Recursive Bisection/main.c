@@ -1,6 +1,6 @@
 //
 //  main.c
-//  MyFirstProgram
+//  A program that uses the Recursive Bisection method as taught in the AE2220-I Applied Numerical Analysis course.
 //
 //  Created by Cihangir Ozbek on 24-02-17.
 //  Copyright © 2017 Cihangir Ozbek. All rights reserved.
@@ -14,7 +14,7 @@
 float fofx(float x){
     float y;
     
-    y = pow(x,3) - x - 1;
+    y = pow(x,6) + pow(x,5) + pow(x,4) + pow(x,3) + pow(x,2) + x - 1    ;
     
     return y;
 }
@@ -43,10 +43,12 @@ float recursive_bisection(float leftbound, float rightbound, float min_error){
     
     
     float cbound;
+    float test;
     // Your initial interval is from leftbound to rightbound
     // There exist a root if fofx(leftbound) * fofox(rightbound) < 0
     // cbound is the middle between a and b:
-    cbound = 0.5*(leftbound + rightbound);
+    cbound = 1;
+    
     
     if (fofx(leftbound)*fofx(rightbound) < 0) {
         
@@ -57,6 +59,7 @@ float recursive_bisection(float leftbound, float rightbound, float min_error){
             
             
             cbound = 0.5*(leftbound + rightbound);
+            
             
             //If the value at cbound is bigger than 0 your root should be in interval leftbound, cbound
             if (fofx(cbound) > 0) {
@@ -72,11 +75,20 @@ float recursive_bisection(float leftbound, float rightbound, float min_error){
             else{
                 printf("Your root is found:\n");
                 printf("%f", cbound);
+    
             }
+            // This piece of code is to assure that if cbound doesnt change any more and it get stucks in the while loop:
+            if (test == cbound) {
+                break;
+            }
+            test = cbound;
+            
             
         }
         printf("Your root is found at:\n");
         printf("%f\n", cbound);
+        
+        
         
         
     
@@ -106,10 +118,10 @@ int     main()
     fpurge( stdin);
     
     printf("\nWhat is your right boundary?:");
-    scanf("%f\n", &b);
+    scanf("%f", &b);
     fpurge( stdin);
     
-    printf("\nWhat is your minimum ?:");
+    printf("What is your minimum ?:");
     scanf("%f", &minerror);
     fpurge( stdin);
     
